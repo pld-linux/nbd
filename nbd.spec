@@ -1,12 +1,12 @@
 Summary:	Tools for using the Network Block Device
 Summary(pl):	Narzêdzia do u¿ywania Network Block Device
 Name:		nbd
-Version:	2.0
+Version:	2.5
 Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/nbd/%{name}-%{version}.tar.gz
-# Source0-md5:	8364e916d4464fbec2132709c67b868c
+# Source0-md5:	8f289903fd4eb4d9eb4c387a36251c50
 URL:		http://nbd.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -35,7 +35,7 @@ urz±dzenia blokowego do swapowania przez sieæ - jest to przydatne w
 przypadku stacji bezdyskowych.
 
 %prep
-%setup -q -n %{name}
+%setup -q
 
 %build
 %{__aclocal}
