@@ -13,6 +13,7 @@ BuildRequires:	automake
 BuildRequires:	docbook-dtd41-sgml
 BuildRequires:	docbook-utils
 BuildRequires:	zlib-devel
+Obsoletes:	nbd-tools
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
