@@ -1,18 +1,20 @@
 Summary:	Tools for using the Network Block Device
 Summary(pl):	Narzêdzia do u¿ywania Network Block Device
 Name:		nbd
-Version:	2.7
+Version:	2.7.1
 Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/nbd/%{name}-%{version}.tar.gz
-# Source0-md5:	98281b6f4eedd1cd2d6b74a0cf1f82f7
+# Source0-md5:	54bc2b6069e752f89974ec46f96ff547
 URL:		http://nbd.sourceforge.net/
 BuildRequires:	docbook-dtd41-sgml
 BuildRequires:	docbook-utils
 BuildRequires:	zlib-devel
 Obsoletes:	nbd-tools
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_sbindir	/sbin
 
 %description
 nbd contains the tools needed to export a network block device and to
@@ -38,10 +40,12 @@ przypadku stacji bezdyskowych.
 %build
 %configure
 
-%{__make}
-
 db2man nbd-client.8.sgml
 db2man nbd-server.1.sgml
+mv -f NBD-CLIENT.8 nbd-client.8
+mv -f NBD-SERVER.1 nbd-server.1
+
+%{__make}
 
 cd gznbd
 
@@ -49,21 +53,18 @@ cd gznbd
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{/sbin,%{_sbindir},%{_mandir}/man{1,8}}
 
-install nbd-client $RPM_BUILD_ROOT/sbin
-install nbd-server $RPM_BUILD_ROOT%{_sbindir}
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
+
 install gznbd/gznbd $RPM_BUILD_ROOT%{_sbindir}
-
-install NBD-CLIENT.8 $RPM_BUILD_ROOT%{_mandir}/man8/nbd-client.8
-install NBD-SERVER.1 $RPM_BUILD_ROOT%{_mandir}/man1/nbd-server.1
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%attr(755,root,root) /sbin/nbd-client
-%attr(755,root,root) %{_sbindir}/nbd-server
+%attr(755,root,root) %{_bindir}/nbd-server
+%attr(755,root,root) %{_sbindir}/nbd-client
 %attr(755,root,root) %{_sbindir}/gznbd
 %{_mandir}/man[18]/*
