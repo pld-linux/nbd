@@ -1,15 +1,13 @@
 Summary:	Tools for using the Network Block Device
 Summary(pl):	Narzêdzia do u¿ywania Network Block Device
 Name:		nbd
-Version:	2.7.2
+Version:	2.7.3
 Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/nbd/%{name}-%{version}.tar.gz
-# Source0-md5:	4cfe5713737ce81d619898602bb142a4
+# Source0-md5:	dcfe67fce628c1292a0a6900035c34bf
 URL:		http://nbd.sourceforge.net/
-BuildRequires:	docbook-dtd41-sgml
-BuildRequires:	docbook-utils
 BuildRequires:	zlib-devel
 Obsoletes:	nbd-tools
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -40,12 +38,6 @@ przypadku stacji bezdyskowych.
 %build
 %configure \
 	--enable-lfs
-
-# we don't have docbook-to-man - convert manuals "by hand"
-db2man nbd-client.8.sgml
-db2man nbd-server.1.sgml
-mv -f NBD-CLIENT.8 nbd-client.8
-mv -f NBD-SERVER.1 nbd-server.1
 
 %{__make}
 
