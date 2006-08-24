@@ -64,6 +64,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%doc README
 %attr(755,root,root) %{_bindir}/nbd-server
 %attr(755,root,root) %{_sbindir}/nbd-client
 %attr(755,root,root) %{_sbindir}/gznbd
