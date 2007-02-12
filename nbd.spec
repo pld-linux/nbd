@@ -1,5 +1,5 @@
 Summary:	Tools for using the Network Block Device
-Summary(pl):	Narzêdzia do u¿ywania Network Block Device
+Summary(pl.UTF-8):   NarzÄ™dzia do uÅ¼ywania Network Block Device
 Name:		nbd
 Version:	2.9.0
 Release:	1
@@ -27,13 +27,13 @@ If you have a kernel patched for it, you can use the network block
 device to swap over the net, which is particularly useful for diskless
 workstations.
 
-%description -l pl
-nbd zawiera narzêdzia potrzebne do wyeksportowania i u¿ywania
-sieciowego urz±dzenia blokowego (Network Block Device). Modu³ do nbd
-jest w j±drze 2.2 i pó¼niejszych.
+%description -l pl.UTF-8
+nbd zawiera narzÄ™dzia potrzebne do wyeksportowania i uÅ¼ywania
+sieciowego urzÄ…dzenia blokowego (Network Block Device). ModuÅ‚ do nbd
+jest w jÄ…drze 2.2 i pÃ³Åºniejszych.
 
-Je¿eli masz kernel z odpowiedni± ³at±, mo¿esz u¿ywaæ sieciowego
-urz±dzenia blokowego do swapowania przez sieæ - jest to przydatne w
+JeÅ¼eli masz kernel z odpowiedniÄ… Å‚atÄ…, moÅ¼esz uÅ¼ywaÄ‡ sieciowego
+urzÄ…dzenia blokowego do swapowania przez sieÄ‡ - jest to przydatne w
 przypadku stacji bezdyskowych.
 
 %prep
