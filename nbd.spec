@@ -1,5 +1,5 @@
 Summary:	Tools for using the Network Block Device
-Summary(pl.UTF-8):   Narzędzia do używania Network Block Device
+Summary(pl.UTF-8):	Narzędzia do używania Network Block Device
 Name:		nbd
 Version:	2.9.0
 Release:	1
