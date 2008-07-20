@@ -1,12 +1,12 @@
 Summary:	Tools for using the Network Block Device
 Summary(pl.UTF-8):	Narzędzia do używania Network Block Device
 Name:		nbd
-Version:	2.9.9
+Version:	2.9.11
 Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/nbd/%{name}-%{version}.tar.bz2
-# Source0-md5:	143c391f5f42c49cb8979ddd24df89f6
+# Source0-md5:	f6a6e09ef1833a4fd9408a84c8a18249
 Patch0:		%{name}-types.patch
 Patch1:		%{name}-gznbd.patch
 URL:		http://nbd.sourceforge.net/
@@ -46,7 +46,9 @@ przypadku stacji bezdyskowych.
 %configure \
 	--enable-lfs
 
-%{__make}
+# omit knbd-client (broken)
+%{__make} \
+	sbin_PROGRAMS=nbd-client
 
 cd gznbd
 
@@ -57,7 +59,8 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/nbd-server
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT
+	DESTDIR=$RPM_BUILD_ROOT \
+	sbin_PROGRAMS=nbd-client
 
 install gznbd/gznbd $RPM_BUILD_ROOT%{_sbindir}
 
