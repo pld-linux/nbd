@@ -1,15 +1,18 @@
 Summary:	Tools for using the Network Block Device
 Summary(pl.UTF-8):	Narzędzia do używania Network Block Device
 Name:		nbd
-Version:	2.9.18
+Version:	2.9.21
 Release:	1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://downloads.sourceforge.net/nbd/%{name}-%{version}.tar.bz2
-# Source0-md5:	a327cd23688df45a1c889e28c6494d70
+# Source0-md5:	68cee30903ece06f1d6342804bf043da
 Patch0:		%{name}-types.patch
 Patch1:		%{name}-gznbd.patch
+Patch2:		%{name}-missing-file.patch
 URL:		http://nbd.sourceforge.net/
+BuildRequires:	docbook-dtd45-sgml
+BuildRequires:	docbook-utils
 BuildRequires:	glib2-devel >= 1:2.6.0
 BuildRequires:	pkgconfig
 BuildRequires:	zlib-devel
@@ -41,6 +44,7 @@ przypadku stacji bezdyskowych.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %configure \
