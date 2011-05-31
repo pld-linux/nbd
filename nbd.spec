@@ -1,15 +1,14 @@
 Summary:	Tools for using the Network Block Device
 Summary(pl.UTF-8):	Narzędzia do używania Network Block Device
 Name:		nbd
-Version:	2.9.21
+Version:	2.9.22
 Release:	1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://downloads.sourceforge.net/nbd/%{name}-%{version}.tar.bz2
-# Source0-md5:	68cee30903ece06f1d6342804bf043da
+# Source0-md5:	ff79803165a349a84d526bfcea820b12
 Patch0:		%{name}-types.patch
 Patch1:		%{name}-gznbd.patch
-Patch2:		%{name}-missing-file.patch
 URL:		http://nbd.sourceforge.net/
 BuildRequires:	docbook-dtd45-sgml
 BuildRequires:	docbook-utils
@@ -44,7 +43,6 @@ przypadku stacji bezdyskowych.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 %configure \
@@ -75,10 +73,12 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README
 %attr(755,root,root) %{_bindir}/nbd-server
+%attr(755,root,root) %{_bindir}/nbd-trdump
 %attr(755,root,root) %{_sbindir}/nbd-client
 %attr(755,root,root) %{_sbindir}/gznbd
 %dir %{_sysconfdir}/nbd-server
 #%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/nbd-server/config
 %{_mandir}/man1/nbd-server.1*
+%{_mandir}/man1/nbd-trdump.1*
 %{_mandir}/man5/nbd-server.5*
 %{_mandir}/man8/nbd-client.8*
