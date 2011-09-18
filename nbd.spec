@@ -1,12 +1,12 @@
 Summary:	Tools for using the Network Block Device
 Summary(pl.UTF-8):	Narzędzia do używania Network Block Device
 Name:		nbd
-Version:	2.9.22
+Version:	2.9.24
 Release:	1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://downloads.sourceforge.net/nbd/%{name}-%{version}.tar.bz2
-# Source0-md5:	ff79803165a349a84d526bfcea820b12
+# Source0-md5:	39fa29a1b7c1da9d36c53bbb0a25e6cf
 Patch0:		%{name}-types.patch
 Patch1:		%{name}-gznbd.patch
 URL:		http://nbd.sourceforge.net/
