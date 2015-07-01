@@ -1,19 +1,20 @@
 Summary:	Tools for using the Network Block Device
 Summary(pl.UTF-8):	Narzędzia do używania Network Block Device
 Name:		nbd
-Version:	2.9.24
+Version:	3.11
 Release:	1
 License:	GPL v2
 Group:		Applications/System
-Source0:	http://downloads.sourceforge.net/nbd/%{name}-%{version}.tar.bz2
-# Source0-md5:	39fa29a1b7c1da9d36c53bbb0a25e6cf
-Patch0:		%{name}-types.patch
-Patch1:		%{name}-gznbd.patch
+Source0:	http://downloads.sourceforge.net/nbd/%{name}-%{version}.tar.xz
+# Source0-md5:	73d11644a28b9f335292cdb3bdc4b74b
+Patch0:		%{name}-gznbd.patch
 URL:		http://nbd.sourceforge.net/
 BuildRequires:	docbook-dtd45-sgml
 BuildRequires:	docbook-utils
-BuildRequires:	glib2-devel >= 1:2.6.0
+BuildRequires:	glib2-devel >= 1:2.26.0
 BuildRequires:	pkgconfig
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xz
 BuildRequires:	zlib-devel
 Requires:	glib2 >= 1:2.6.0
 Obsoletes:	nbd-tools
@@ -42,40 +43,31 @@ przypadku stacji bezdyskowych.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %configure \
+	--enable-gznbd \
 	--enable-lfs
 
-# omit knbd-client (broken)
-%{__make} \
-	sbin_PROGRAMS=nbd-client
-
-cd gznbd
-
-%{__cc} %{rpmldflags} %{rpmcflags} -DMY_NAME='"gznbd"' -Wall -o gznbd gznbd.c -lz
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_sysconfdir}/nbd-server
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	sbin_PROGRAMS=nbd-client
-
-install gznbd/gznbd $RPM_BUILD_ROOT%{_sbindir}
+	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README
+%doc README.md
+%attr(755,root,root) %{_bindir}/gznbd
 %attr(755,root,root) %{_bindir}/nbd-server
 %attr(755,root,root) %{_bindir}/nbd-trdump
 %attr(755,root,root) %{_sbindir}/nbd-client
-%attr(755,root,root) %{_sbindir}/gznbd
 %dir %{_sysconfdir}/nbd-server
 #%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/nbd-server/config
 %{_mandir}/man1/nbd-server.1*
