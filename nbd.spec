@@ -1,23 +1,28 @@
 Summary:	Tools for using the Network Block Device
 Summary(pl.UTF-8):	Narzędzia do używania Network Block Device
 Name:		nbd
-Version:	3.14
+Version:	3.23
 Release:	1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://downloads.sourceforge.net/nbd/%{name}-%{version}.tar.xz
-# Source0-md5:	fa29f57ca752e363edc15f0e35f0a95f
-Source1:	nbd@.service.tmpl
+# Source0-md5:	c35397bd2c4d53bb9f14523463357096
 Patch0:		%{name}-gznbd.patch
 URL:		http://nbd.sourceforge.net/
+BuildRequires:	bison
 BuildRequires:	docbook-dtd45-sgml
 BuildRequires:	docbook-utils
-BuildRequires:	glib2-devel >= 1:2.26.0
+BuildRequires:	flex
+BuildRequires:	glib2-devel >= 1:2.68.0
+BuildRequires:	gnutls-devel >= 2.12.0
+BuildRequires:	libnl-devel >= 3.1
 BuildRequires:	pkgconfig
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 BuildRequires:	zlib-devel
-Requires:	glib2 >= 1:2.26.0
+Requires:	glib2 >= 1:2.68.0
+Requires:	gnutls-libs >= 2.12.0
+Requires:	libnl >= 3.1
 Obsoletes:	nbd-tools
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -45,11 +50,9 @@ przypadku stacji bezdyskowych.
 %setup -q
 %patch0 -p1
 
-test ! -f systemd/nbd@.service.tmpl
-cp %{SOURCE1} systemd
-
 %build
 %configure \
+	--disable-silent-rules \
 	--enable-gznbd \
 	--enable-lfs
 
@@ -71,6 +74,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/gznbd
 %attr(755,root,root) %{_bindir}/nbd-server
 %attr(755,root,root) %{_bindir}/nbd-trdump
+%attr(755,root,root) %{_sbindir}/min-nbd-client
 %attr(755,root,root) %{_sbindir}/nbd-client
 %dir %{_sysconfdir}/nbd-server
 #%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/nbd-server/config
