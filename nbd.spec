@@ -23,7 +23,7 @@ BuildRequires:	zlib-devel
 Requires:	glib2 >= 1:2.68.0
 Requires:	gnutls-libs >= 2.12.0
 Requires:	libnl >= 3.1
-Obsoletes:	nbd-tools
+Obsoletes:	nbd-tools < 1.4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sbindir	/sbin
