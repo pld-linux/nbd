@@ -1,12 +1,12 @@
 Summary:	Tools for using the Network Block Device
 Summary(pl.UTF-8):	Narzędzia do używania Network Block Device
 Name:		nbd
-Version:	3.23
+Version:	3.24
 Release:	1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://downloads.sourceforge.net/nbd/%{name}-%{version}.tar.xz
-# Source0-md5:	c35397bd2c4d53bb9f14523463357096
+# Source0-md5:	a6d9e7bbc311a2ed07ef84a58b82b5dd
 Patch0:		%{name}-gznbd.patch
 URL:		http://nbd.sourceforge.net/
 BuildRequires:	bison
@@ -74,12 +74,14 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/gznbd
 %attr(755,root,root) %{_bindir}/nbd-server
 %attr(755,root,root) %{_bindir}/nbd-trdump
+%attr(755,root,root) %{_bindir}/nbd-trplay
 %attr(755,root,root) %{_sbindir}/min-nbd-client
 %attr(755,root,root) %{_sbindir}/nbd-client
 %dir %{_sysconfdir}/nbd-server
 #%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/nbd-server/config
 %{_mandir}/man1/nbd-server.1*
 %{_mandir}/man1/nbd-trdump.1*
+%{_mandir}/man1/nbd-trplay.1*
 %{_mandir}/man5/nbd-server.5*
 %{_mandir}/man5/nbdtab.5*
 %{_mandir}/man8/nbd-client.8*
