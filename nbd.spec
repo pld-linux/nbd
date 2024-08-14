@@ -9,7 +9,7 @@ Source0:	https://github.com/NetworkBlockDevice/nbd/releases/download/%{name}-%{v
 # Source0-md5:	9a15e88f2b63d467ce5a6db1da8a2f0f
 Patch0:		systemd-gen.patch
 URL:		http://nbd.sourceforge.net/
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.50
 BuildRequires:	autoconf-archive
 BuildRequires:	automake
 BuildRequires:	bison
@@ -20,7 +20,7 @@ BuildRequires:	flex
 BuildRequires:	glib2-devel >= 1:2.68.0
 BuildRequires:	gnutls-devel >= 2.12.0
 BuildRequires:	libnl-devel >= 3.1
-BuildRequires:	libtool
+BuildRequires:	libtool >= 2:2
 BuildRequires:	pkgconfig
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
