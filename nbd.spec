@@ -10,6 +10,7 @@ Source0:	http://downloads.sourceforge.net/nbd/%{name}-%{version}.tar.xz
 Patch0:		%{name}-gznbd.patch
 URL:		http://nbd.sourceforge.net/
 BuildRequires:	bison
+BuildRequires:	docbook-dtd41-sgml
 BuildRequires:	docbook-dtd45-sgml
 BuildRequires:	docbook-utils
 BuildRequires:	flex
