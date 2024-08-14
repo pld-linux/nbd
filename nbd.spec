@@ -1,14 +1,17 @@
 Summary:	Tools for using the Network Block Device
 Summary(pl.UTF-8):	Narzędzia do używania Network Block Device
 Name:		nbd
-Version:	3.24
+Version:	3.26.1
 Release:	1
 License:	GPL v2
 Group:		Applications/System
-Source0:	http://downloads.sourceforge.net/nbd/%{name}-%{version}.tar.xz
-# Source0-md5:	a6d9e7bbc311a2ed07ef84a58b82b5dd
-Patch0:		%{name}-gznbd.patch
+Source0:	https://github.com/NetworkBlockDevice/nbd/releases/download/%{name}-%{version}/%{name}-%{version}.tar.xz
+# Source0-md5:	9a15e88f2b63d467ce5a6db1da8a2f0f
+Patch0:		systemd-gen.patch
 URL:		http://nbd.sourceforge.net/
+BuildRequires:	autoconf
+BuildRequires:	autoconf-archive
+BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	docbook-dtd41-sgml
 BuildRequires:	docbook-dtd45-sgml
@@ -17,6 +20,7 @@ BuildRequires:	flex
 BuildRequires:	glib2-devel >= 1:2.68.0
 BuildRequires:	gnutls-devel >= 2.12.0
 BuildRequires:	libnl-devel >= 3.1
+BuildRequires:	libtool
 BuildRequires:	pkgconfig
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
@@ -52,9 +56,13 @@ przypadku stacji bezdyskowych.
 %patch0 -p1
 
 %build
+%{__libtoolize}
+%{__aclocal}
+%{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure \
 	--disable-silent-rules \
-	--enable-gznbd \
 	--enable-lfs
 
 %{__make}
@@ -72,7 +80,6 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README.md
-%attr(755,root,root) %{_bindir}/gznbd
 %attr(755,root,root) %{_bindir}/nbd-server
 %attr(755,root,root) %{_bindir}/nbd-trdump
 %attr(755,root,root) %{_bindir}/nbd-trplay
